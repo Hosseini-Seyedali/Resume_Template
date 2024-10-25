@@ -1,4 +1,4 @@
-# Resume_Template
+# Resume_LATEX
 NOW create your professional CV by using LaTex format template
 
 Step 1:
