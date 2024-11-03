@@ -1,5 +1,3 @@
-![Downloads](https://img.shields.io/github/downloads/username/repo/asset-name/total)
-
 # Resume_LATEX
 NOW create your professional CV by using LaTex format template
 
