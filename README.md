@@ -1,4 +1,3 @@
-Number of Downloaded 
 ![Downloads](https://img.shields.io/github/downloads/username/repo/asset-name/total)
 
 # Resume_LATEX
