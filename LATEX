@@ -1,0 +1,195 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{geometry}
+\geometry{a4paper, left=1.5cm, right=1.5cm, top=1.5cm, bottom=2cm}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{tikz}  % TikZ package for drawing
+\usepackage{enumitem}  % Enumitem package for controlling list indentations
+
+%Capital Letter
+\usepackage{xparse}
+\usepackage{expl3}
+
+% Define colors
+\definecolor{lightgray}{gray}{0.9}  % Light gray for alternating rows
+\definecolor{bordergray}{gray}{0.7}  % Gray for table borders
+\definecolor{linkcolor}{rgb}{0.0, 0.5, 0.75}
+\definecolor{purplecolor}{RGB}{128, 0, 128} % Define the purple color
+\definecolor{darkblue}{RGB}{0, 51, 102}
+\definecolor{slategray}{RGB}{112, 128, 144}
+\definecolor{tealcolor}{RGB}{0, 128, 128}
+\definecolor{deeppurple}{RGB}{75, 0, 130}
+\definecolor{lightgraybg}{gray}{0.9} % Define light gray color
+
+% Define the color for the circles and the line
+\definecolor{circlegray}{gray}{0.8}
+
+% Hyperlink setup
+\hypersetup{
+	colorlinks=true,
+	urlcolor=linkcolor}
+
+%Capital Letter Func()
+\ExplSyntaxOn
+\NewDocumentCommand{\biglittlecap}{m}
+{
+	\sheljohn_biglittecap:nn { #1 }
+}
+\tl_new:N \l__sheljohn_biglittecap_input_tl
+\cs_new_protected:Npn \sheljohn_biglittecap:nn #1
+{
+	% store the string in a variable   
+	\tl_set:Nn \l__sheljohn_biglittecap_input_tl { #1 }
+	\regex_replace_all:nnN
+	% search a capital letter (or more)
+	{ ([A-Z]+ | \cC.\{?[A-Z]+\}?) }
+	% replace the match with \huge{match}
+	{ \cB\{\c{huge}\1\cE\} }
+	\l__sheljohn_biglittecap_input_tl
+	\tl_use:N \MakeUppercase{\l__sheljohn_biglittecap_input_tl}
+}
+\ExplSyntaxOff
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\title{Curriculum Vitae}
+\date{}
+
+\begin{document}
+	
+	\begin{center}
+		\biglittlecap{Your Name} \\
+		\vspace{5pt}
+		\biglittlecap{Job Title} \\
+		\vspace{5pt}
+		\small % Makes the following contact info smaller
+		\faPhone~+12 345 678 900 \quad \faMapMarker~Faketown, Imaginaryland, IF \\
+		\faEnvelope~\href{mailto:YourEmail@example.com}{YourEmail@example.com} \quad 
+		\faGithub~\href{https://github.com/}{Github} \quad 
+		\faLinkedin~\href{https://www.linkedin.com/in/}{LinkedIn}
+		\normalsize % Return to normal size for the rest of the document
+	\end{center}
+	
+	\section*{\textcolor{darkblue}{Introductory Profile} \hfill \textcolor{darkblue}{\rule[0.5ex]{0.70\textwidth}{0.5pt}}}
+	
+	Second-year Master's student in Data Engineering and a Machine Learning Intern at Tech Corp, focusing on large and complex data sets for machine learning and Business Intelligence projects. As a former Research Assistant, I conducted advanced research on Signal Processing using Machine Learning. I also designed a model for predictive maintenance in industrial settings and have over 3 years of experience as a Service Engineer.
+	
+	\section*{\textcolor{darkblue}{Core Competencies and Technologies} \hfill \textcolor{darkblue}{\rule[0.5ex]{0.465\textwidth}{0.5pt}}}
+	
+	\rowcolors{1}{white}{lightgray}  % Alternating row colors
+	
+	% Start table
+	\renewcommand{\arraystretch}{1.5} % Adjust the factor for more or less space between rows
+	\arrayrulecolor{bordergray} % Set border color to gray
+	\begin{tabularx}{\textwidth}{|>{\bfseries}l|X|} % Left vertical line defined here
+		\hline
+		Backend/Languages: & Python, Java, Machine Learning, Deep Learning, Git, GitHub \\
+		\hline
+		Frameworks/Tools: & TensorFlow, Scikit-learn, Pandas, Seaborn, NumPy, Matplotlib, Plotly \\
+		\hline
+		DevOps \& services: & Google Cloud, AWS, Azure \\
+		\hline
+		Databases: & SQL, NoSQL \\
+		\hline
+		BI Visualization Tools: & Power BI, Tableau \\
+		\hline
+		Project Management: & Asana, Jira \\
+		\hline
+		Software: & MATLAB, SPSS, Linux, Eclipse \\
+		\hline
+		Frontend: & HTML, CSS \\
+		\hline
+	\end{tabularx}
+	
+	
+	\section*{\textcolor{darkblue}{Professional Experience} \hfill \textcolor{darkblue}{\rule[0.5ex]{0.65\textwidth}{0.5pt}}}
+	\colorbox{lightgraybg}{\makebox[\textwidth][l]{\textbf{Tech Corp} \hfill \textbf{Faketown, IF}}} \\
+	% Start of the timeline section
+	\noindent
+	\begin{tikzpicture}[remember picture, overlay]
+		% Draw the first circle for Data Scientist
+		\filldraw[fill=circlegray, draw=black] (0,-0.2) circle (0.1cm);
+		% Draw the connecting line
+		\draw[thick, circlegray] (0, -0.4) -- (0, -4.75);
+		% Draw the second circle for Machine Learning Intern
+		\filldraw[fill=circlegray, draw=black] (0, -4.95) circle (0.1cm);
+	\end{tikzpicture}
+	\vspace{-6mm}
+	\begin{flushleft}
+		\hspace*{0.2cm} \textbf{Data Scientist} \hfill \textbf{Jan 2024 - Present} \\
+		\vspace{-2pt} % Reduce the vertical space between the title and the list
+		\begin{itemize}[left=5mm, label=\textbullet, itemsep=3pt] % Indent the bullets with 1.3cm to match the title's indent
+			\item Developed BI solutions, supported new dashboard deployment for product quality improvement.
+			\item Designed and supported machine learning algorithms for recommendation systems.
+			\item Performed data analysis on semi-structured datasets using Python and SQL.
+			\item Familiarity with AWS and ETL concepts.
+		\end{itemize}
+		
+		\hspace*{0.2cm} \textbf{Machine Learning Intern} \hfill \textbf{Jul 2023 – Dec 2023} \\
+		\vspace{-2pt} % Reduce the vertical space between the title and the list
+		\begin{itemize}[left=5mm, label=\textbullet, itemsep=3pt]
+			\item Developed BI solutions and supported dashboard development.
+			\item Applied ML techniques to big data and provided insights.
+		\end{itemize}
+	\end{flushleft}
+	
+	\colorbox{lightgraybg}{\makebox[\textwidth][l]{\textbf{Innovate Solutions} \hfill \textbf{Metropolis, IF}}} \\
+	\textbf{Service Engineer} \hfill \textbf{2019 – 2020} \\
+	\vspace{-18pt} % Reduce the vertical space between the title and the list
+	\begin{itemize}[left=5mm, label=\textbullet, itemsep=3pt] % Indentation of the content
+		\item Installed and maintained industrial equipment.
+		\item Collaborated with R\&D to design new equipment.
+	\end{itemize}
+	
+	\clearpage	
+	\section*{\textcolor{darkblue}{Research Experience} \hfill \textcolor{darkblue}{\rule[0.5ex]{0.69\textwidth}{0.5pt}}}
+	\colorbox{lightgraybg}{\makebox[\textwidth][l]{\textbf{Advanced Research Lab} \hfill \textbf{Faketown, IF}}} \\
+	\textbf{Research Assistant} \hfill\textbf{Aug 2022 - Jun 2023} \\
+	Conducted research in Signal Processing at the Advanced Research Lab and used Python programming for image processing and machine learning.
+	\vspace{-10pt} % Reduce the vertical space between the title and the list
+	\begin{itemize}[left=0pt, label=\textbullet, itemsep=3pt]
+		\item Developed signal processing algorithms with Python.
+	\end{itemize}
+	
+	\colorbox{lightgraybg}{\makebox[\textwidth][l]{\textbf{University of Faketown} \hfill \textbf{Metropolis, IF}}} \\
+	\textbf{Research Associate} \hfill\textbf{Sep 2019 – Aug 2020}  \\
+	\vspace{-20pt} % Reduce the vertical space between the title and the list
+	\begin{itemize}[left=0pt, label=\textbullet, itemsep=3pt]
+		\item Designed predictive models for equipment failure in industrial applications.
+	\end{itemize}
+	
+	\section*{\textcolor{darkblue}{Education} \hfill \textcolor{darkblue}{\rule[0.5ex]{0.835\textwidth}{0.5pt}}}
+	\textbf{University of Imaginaryland} \hfill\textbf{Faketown, IF} \\ 
+	Master’s in Data Science \hfill\textbf{Sep 2022 - Present} \\ 
+	\textit{Thesis}: Predictive Analytics for Equipment Maintenance Using Machine Learning.
+	
+	\textbf{University of Imaginaryland} \hfill\textbf{Metropolis, IF} \\ 
+	Bachelor’s in Electrical Engineering • GPA: 3.7/4.0 \hfill\textbf{2018 - 2020} 
+	
+	\section*{\textcolor{darkblue}{Certificate} \hfill \textcolor{darkblue}{\rule[0.5ex]{0.79\textwidth}{0.5pt}}}
+	\begin{itemize}[left=0pt, label=\textbullet, itemsep=3pt]
+		\item Advanced Data Engineering Certification \hfill \textbf{2023}
+		\item Deep Learning Specialization \hfill \textbf{2023}
+		\item Cloud Practitioner Certification \hfill \textbf{2023}
+	\end{itemize}
+	
+	\section*{\textcolor{darkblue}{References} \hfill \textcolor{darkblue}{\rule[0.5ex]{0.825\textwidth}{0.5pt}}}
+	\begin{itemize}[left=0pt, label=\textbullet, itemsep=3pt]
+		\item Jane Smith, Engineering Manager | Tech Corp \\
+		\href{mailto:jane.smith@techcorp.com}{jane.smith@techcorp.com} | +12 (345) 678-9000
+		\item Bob Johnson, Professor | University of Faketown \\
+		\href{mailto:bob.johnson@faketown.edu}{bob.johnson@faketown.edu}
+	\end{itemize}
+	
+	% Add version Control to the last page
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[anchor=south east, xshift=-1.5cm, yshift=1.5cm] at (current page.south east) {\textcolor{gray}{Version v1.0}};
+	\end{tikzpicture}
+	
+\end{document}
